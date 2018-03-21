@@ -4,6 +4,12 @@ const filter = require("./_filter")
 const URL = "https://api.steemit.com/"
 
 const api = ({ path, data, filterType, username }, callback) => {
+  let dataParams = [data]
+  if (Array.isArray(dataParams)) {
+    if (dataParams.length === 2) {
+      dataParams = [...data]
+    }
+  }
   const params = {
     id: 1,
     jsonrpc: "2.0",
@@ -11,7 +17,7 @@ const api = ({ path, data, filterType, username }, callback) => {
     params: [
       "database_api",
       path,
-      [data]
+      dataParams
     ]
   }
 

@@ -1,7 +1,16 @@
 const postFilter = (username, result) => {
   let newResult = []
   result.forEach(item => {
-    const { id, author, title, category, permlink, net_votes, pending_payout_value, active_votes } = item
+    const {
+      id,
+      author,
+      title,
+      category,
+      permlink,
+      net_votes,
+      pending_payout_value,
+      active_votes
+    } = item
 
     let metadata = null
     let cover = null
@@ -25,7 +34,17 @@ const postFilter = (username, result) => {
       }
     }
 
-    const newItem = { id, author, category, cover, permlink, title, votes: net_votes, isVoted, pendingPayout: pending_payout_value.split(" ")[0] * 1 }
+    const newItem = {
+      id,
+      author,
+      category,
+      cover,
+      permlink,
+      title,
+      votes: net_votes,
+      isVoted,
+      pendingPayout: pending_payout_value.split(" ")[0] * 1
+    }
     newResult.push(newItem)
   })
   return newResult
