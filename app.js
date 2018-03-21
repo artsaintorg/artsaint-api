@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
 const index = require('./routes/index')
+const posts = require('./routes/posts')
 
 const app = express()
 
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 app.use('/', index)
+app.use('/posts', posts)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
