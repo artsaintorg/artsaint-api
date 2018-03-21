@@ -18,9 +18,11 @@ router.get("/:sortBy", (req, res, next) => {
     truncate_body: 1
   }
 
+  // pagination
   if (start_author && start_permlink) {
     dataParams.start_author = start_author
     dataParams.start_permlink = start_permlink
+    dataParams.limit++
   }
 
   const params = {
@@ -31,6 +33,10 @@ router.get("/:sortBy", (req, res, next) => {
   }
 
   api(params, (err, data) => {
+    // remove first array for prevent double
+    if (start_author && start_permlink) {
+      data.shift()
+    }
     if (err) { res.json(err) }
     else { res.json(data) }
   })
